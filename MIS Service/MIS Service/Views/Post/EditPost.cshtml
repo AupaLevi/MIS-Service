@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "EditPost";
+}
+@model MIS_Service.Models.PostDataObject
+<br />
+<br />
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Edit Post</h4>
+                @using (Html.BeginForm("ConfirmedEdit", "Post", new { postID = Model.Aaa01 }, FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            @Html.HiddenFor(model => model.Aaa01)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa06">修改 申請部門</label>
+                        @Html.TextBoxFor(model => model.Aaa04, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa07">修改 申請目的</label>
+                        @Html.TextAreaFor(model => model.Aaa05, new { @class = "form-control", rows = "3", id = "PostContent", name = "PostContent" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa07">修改 申請內容</label>
+                        @Html.TextAreaFor(model => model.Aaa06, new { @class = "form-control", rows = "6", id = "PostContent", name = "PostContent" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa06">修改 完成日</label>
+                        @Html.TextBoxFor(model => model.Aaa07, new { @class = "form-control" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Update"
+                           onclick="@("window.location.href='" + @Url.Action("EditConfirmed", "Post",
+                                        new { postID=Model.Aaa01}) + "'");" />
+                    <button type="button" class="btn btn-primary" onclick="history.go(-1)">Cancel</button>
+                }
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "ConfirmDelete";
+}
+
+@model IEnumerable<MIS_Service.Models.PostDataObject>
+<br />
+<br />
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Confirm Delete Post</h4>
+                @foreach (var eachPostData in ViewBag.ListOfPosts as List<MIS_Service.Models.PostDataObject>)
+                {
+                    using (Html.BeginForm("ConfirmedDelete", "Post", new { postID = eachPostData.Aaa01 }, FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="hidden" placeholder="@eachPostData.Aaa01" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Aaa04">刪除 申請部門</label>
+                            <input type="text" class="form-control" placeholder="@eachPostData.Aaa04" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Aaa05">刪除 申請目的</label>
+                            <textarea class="form-control" placeholder="@eachPostData.Aaa05" rows="3" readonly></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Aaa06">刪除 申請內容</label>
+                            <textarea class="form-control" placeholder="@eachPostData.Aaa06" rows="5" readonly></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Aaa07">刪除 完成日</label>
+                            <input type="text" class="form-control" placeholder="@eachPostData.Aaa07" readonly />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Delete"
+                               onclick="@("window.location.href='" + @Url.Action("DeleteConfirmed", "Post",
+                                        new { postID=eachPostData.Aaa01}) + "'");" />
+                        <button type="button" class="btn btn-primary" onclick="history.go(-1)">Cancel</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</body>

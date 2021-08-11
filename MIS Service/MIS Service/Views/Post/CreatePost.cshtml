@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "CreatePost";
+}
+@model MIS_Service.Models.PostDataObject
+
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Create Post</h4>
+                <h5 class="mb-3">New Ticket</h5>
+                @using (Html.BeginForm("Create", "Post", FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa02">申請日期</label>
+                        @Html.TextBoxFor(model => model.Aaa02, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa03">收件日期</label>
+                        @Html.TextBoxFor(model => model.Aaa03, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa04">表單序號</label>
+                        @Html.TextBoxFor(model => model.Aaa04, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa05">申請部門</label>
+                        @Html.TextBoxFor(model => model.Aaa05, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa06">申請目的</label>
+                        @Html.TextAreaFor(model => model.Aaa06, 4, 50, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa07">申請內容</label>
+                        @Html.TextAreaFor(model => model.Aaa07, new { @class = "form-control", rows = "6", id = "PostContent", name = "PostContent" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa08">完成日</label>
+                        @Html.TextBoxFor(model => model.Aaa08, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Aaa09">工單結案日</label>
+                        @Html.TextBoxFor(model => model.Aaa09, new { @class = "form-control" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="history.go(-1)">Cancel</button>
+                }
+            </div>
+        </div>
+    </div>
+</body>

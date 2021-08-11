@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "AddNewPost";
+}
+@model MIS_Service.Models.PostDataViewModel
+<br />
+<br />
+    <body class="bg-light">
+        <div class="container-lg">
+
+            <br />
+            <br />
+            <h4 class="mb-3">MIS 服務申請紀錄單</h4>
+            <div class="table-responsive-md">
+                <div class="panel-title">
+                    <div class="row">
+                        <div class="col col-md-6">
+                            <h3 class="panel-title">Post List</h3>
+                        </div>                      
+                        <div class="col col-md-5 text-right">
+                            <button type="button" class="btn btn-danger" onclick="@("window.location.href='" + @Url.Action("PostLogTickets", "Post") + "'");">LogTickets</button>
+                            <button type="button" class="btn btn-danger" onclick="@("window.location.href='" + @Url.Action("CreatePost", "Post") + "'");">MIS服務單建立</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th align="center" style="width: 100px">Operation</th>
+                                <th style="width: 100px">申請日期</th>
+                                
+                                <th style="width: 100px">表單序號</th>
+                                <th style="width: 100px">申請部門</th>
+                               
+                                <th style="width: 100px">申請內容</th>
+                                
+                               
+                                <th style="width: 100px">表單明細</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var eachPostData in Model.PostDataList)
+                            {
+                            <tr>
+                                <td align="left">
+                                    <a class="btn btn-sm btn-outline-secondary" onclick="@("window.location.href='" + @Url.Action("EditPost", "Post", new { postID=eachPostData.Aaa01}) + "'");">編輯</a>
+                                    &nbsp;
+                                    <a class="btn btn-sm btn-outline-danger" onclick="@("window.location.href='" + @Url.Action("DeletePost", "Post", new { postID=eachPostData.Aaa01}) + "'");">刪除</a>
+                                </td>
+                                <td>@eachPostData.Aaa02</td>
+                               
+                                <td>@eachPostData.Aaa04</td>
+                                <td>@eachPostData.Aaa05</td>
+                                
+                                <td>@Html.Raw(@eachPostData.Aaa07.Replace("\n", "<br />"))</td>
+                                
+                                
+                                <td align="left">
+                                    <a class="btn btn-sm btn-outline-danger" onclick="@("window.location.href='" + @Url.Action("PostDetail", "Post", new { postID=eachPostData.Aaa01}) + "'");">表單明細</a>
+                                </td>
+
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination">
+                            @if (Model.FirstPage)
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" );">Previous</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="#" tabindex="-1" onclick="@("window.location.href='" + @Url.Action("ToPage", "Post", new { postID = Model.PreviousPageNumber }) + "'");">Previous</a>
+                                </li>
+                            }
+                            @foreach (var eachPageNum in Model.PageNumberList)
+                            {
+                                <li class="page-item"><a class="page-link" href="#" onclick="@("window.location.href='" + @Url.Action("ToPage", "Post", new { postID = eachPageNum.CurrentPage }) + "'");">@eachPageNum.PageNumber</a></li>
+                            }
+                            @if (Model.LastPage)
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="#" onclick="@("window.location.href='" + @Url.Action("ToPage", "Post", new { postID = Model.NextPageNumber }) + "'");">Next</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </nav>
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year - Web Application</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </body>

@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "PostLogTickets";
+}
+@model MIS_Service.Models.PostDataViewModel
+<br />
+<br />
+<body class="bg-light">
+    <div class="container-lg">
+
+        <br />
+        <br />
+        <h4 class="mb-3">Log Tickets</h4>
+        <div class="table-responsive-md">
+            <div class="panel-title">
+                <div class="row">
+                    <div class="col col-md-6">
+                        <h3 class="panel-title">Post List</h3>
+                    </div>
+                    <div class="col col-md-5 text-right">
+                        <button type="button" class="btn btn-danger" onclick="@("window.location.href='" + @Url.Action("AddNewPost", "Post") + "'");">MIS服務單</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>  
+                            <th align="center" style="width: 100px">申請日期</th>
+
+                            <th style="width: 100px">表單序號</th>
+                            <th style="width: 100px">申請部門</th>
+
+                            <th style="width: 100px">申請內容</th>
+
+
+                            <th style="width: 100px">表單明細</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var eachPostLog in Model.PostLogList)
+                        {
+                        <tr>
+                            <td>@eachPostLog.Hy_tic02</td>
+
+                            <td>@eachPostLog.Hy_tic04</td>
+                            <td>@eachPostLog.Hy_tic05</td>
+
+                            <td>@Html.Raw(@eachPostLog.Hy_tic07.Replace("\n", "<br />"))</td>
+
+
+                            <td align="left">
+                                <a class="btn btn-sm btn-outline-danger" onclick="@("window.location.href='" + @Url.Action("PostLogDetail", "Post", new { postID=eachPostLog.Hy_tic01}) + "'");">表單明細</a>
+                            </td>
+
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pagination">
+                        @if (Model.FirstPage)
+                        {
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" );">Previous</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="#" tabindex="-1" onclick="@("window.location.href='" + @Url.Action("ToPage", "Post", new { postID = Model.PreviousPageNumber }) + "'");">Previous</a>
+                            </li>
+                        }
+                        @foreach (var eachPageNum in Model.PageNumberList)
+                        {
+                            <li class="page-item"><a class="page-link" href="#" onclick="@("window.location.href='" + @Url.Action("ToPage", "Post", new { postID = eachPageNum.CurrentPage }) + "'");">@eachPageNum.PageNumber</a></li>
+                        }
+                        @if (Model.LastPage)
+                        {
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="#" onclick="@("window.location.href='" + @Url.Action("ToPage", "Post", new { postID = Model.NextPageNumber }) + "'");">Next</a>
+                            </li>
+                        }
+
+                    </ul>
+                </nav>
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Web Application</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
