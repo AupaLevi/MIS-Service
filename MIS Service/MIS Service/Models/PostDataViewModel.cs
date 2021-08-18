@@ -17,7 +17,6 @@ namespace MIS_Service.Models
         private bool lastPage;
 
         public IEnumerable<PostDataObject> PostDataList { get; set; }
-        public IEnumerable<PostDataLog> PostLogList { get; set; }
         public IEnumerable<PageBean> PageNumberList { get; set; }
         public int PageCount { get; set; }
         public int CurrentPage { get => currentPage; set => currentPage = value; }
@@ -28,7 +27,7 @@ namespace MIS_Service.Models
         public bool LastPage { get => lastPage; set => lastPage = value; }
         public bool FirstPage { get => firstPage; set => firstPage = value; }
 
-        //public IEnumerable<UserBasicDataObject> UserBasicData { get; set; }
+        
 
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }

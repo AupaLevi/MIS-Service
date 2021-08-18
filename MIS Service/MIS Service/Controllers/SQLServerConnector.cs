@@ -25,10 +25,10 @@ namespace MIS_Service.Controllers
         private void Initializer()
         {
             SqlConnectionStringBuilder Builder = new SqlConnectionStringBuilder();
-            Builder.DataSource = "(LocalDB)\\MSSQLLocalDB";
+            Builder.DataSource = "AUPA-SERVER207\\MSSQLSERVER207";
             Builder.InitialCatalog = "OAWebBase";
-            //Builder.UserID = "sa";
-            //Builder.Password = "#Aupa=234";
+            Builder.UserID = "sa";
+            Builder.Password = "#Aupa=234";
             String sqlConnectionString = Builder.ConnectionString;
             sqlConnection = new SqlConnection(sqlConnectionString);
         }
@@ -72,7 +72,37 @@ namespace MIS_Service.Controllers
 
         public int GetTotalCount()
         {
-            String sqlString = "SELECT * FROM aaa_file " +
+            String sqlString = "SELECT * FROM tic_file " +
+                               "";
+            OpenConnection();
+            actionResult = "SUCCESS";
+            int rowcount = 0;
+            try
+            {
+                DataTable dataTable = new DataTable();
+                SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = sqlString;
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter.Fill(dataTable);
+                rowcount = dataTable.Rows.Count;
+            }
+            catch (Exception ex)
+            {
+                string v = "FAIL" + ex.Message;
+                actionResult = v;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return rowcount;
+        }
+
+        public int GetTotalLogCount()
+        {
+            String sqlString = "SELECT * FROM tig_file " +
                                "";
             OpenConnection();
             actionResult = "SUCCESS";
@@ -102,9 +132,9 @@ namespace MIS_Service.Controllers
 
         public String InsertPostData(PostDataObject postDataObjec)
         {
-            String sqlString = "INSERT INTO aaa_file ( " +
-                                    " aaa01, aaa02, aaa03, aaa04, aaa05, " +
-                                    " aaa06, aaa07, aaa08, aaa09 " +
+            String sqlString = "INSERT INTO tic_file ( " +
+                                    " tic01, tic02, tic03, tic04, tic05, " +
+                                    " tic06, tic07, tic08, tic09 " +
                                     ") VALUES ( " +
                                     " @val01, @val02, @val03, @val04, @val05, @val06, " +
                                     " @val07, @val08, @val09                                  " +
@@ -119,15 +149,15 @@ namespace MIS_Service.Controllers
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = sqlString;
 
-                sqlCommand.Parameters.AddWithValue("@val01", postDataObjec.Aaa01);
-                sqlCommand.Parameters.AddWithValue("@val02", postDataObjec.Aaa02);
-                sqlCommand.Parameters.AddWithValue("@val03", postDataObjec.Aaa03);
-                sqlCommand.Parameters.AddWithValue("@val04", postDataObjec.Aaa04);
-                sqlCommand.Parameters.AddWithValue("@val05", postDataObjec.Aaa05);
-                sqlCommand.Parameters.AddWithValue("@val06", postDataObjec.Aaa06);
-                sqlCommand.Parameters.AddWithValue("@val07", postDataObjec.Aaa07);
-                sqlCommand.Parameters.AddWithValue("@val08", postDataObjec.Aaa08);
-                sqlCommand.Parameters.AddWithValue("@val09", postDataObjec.Aaa09);
+                sqlCommand.Parameters.AddWithValue("@val01", postDataObjec.Tic01);
+                sqlCommand.Parameters.AddWithValue("@val02", postDataObjec.Tic02);
+                sqlCommand.Parameters.AddWithValue("@val03", postDataObjec.Tic03);
+                sqlCommand.Parameters.AddWithValue("@val04", postDataObjec.Tic04);
+                sqlCommand.Parameters.AddWithValue("@val05", postDataObjec.Tic05);
+                sqlCommand.Parameters.AddWithValue("@val06", postDataObjec.Tic06);
+                sqlCommand.Parameters.AddWithValue("@val07", postDataObjec.Tic07);
+                sqlCommand.Parameters.AddWithValue("@val08", postDataObjec.Tic08);
+                sqlCommand.Parameters.AddWithValue("@val09", postDataObjec.Tic09);
 
                 sqlCommand.ExecuteNonQuery();
             }
@@ -144,8 +174,8 @@ namespace MIS_Service.Controllers
 
         public List<PostDataObject> GetPostsList()
         {
-            String sqlString = "SELECT * FROM aaa_file" +
-                               " ORDER BY aaa01 DESC" +
+            String sqlString = "SELECT * FROM tic_file" +
+                               " ORDER BY tic01 DESC" +
                                "";
             List<PostDataObject> postsList = new List<PostDataObject>();
 
@@ -166,15 +196,15 @@ namespace MIS_Service.Controllers
                     {
                         PostDataObject postDataObject = new PostDataObject();
 
-                        postDataObject.Aaa01 = dataReader.GetString(dataReader.GetOrdinal("Aaa01"));
-                        postDataObject.Aaa02 = dataReader.GetString(dataReader.GetOrdinal("Aaa02"));
-                        postDataObject.Aaa03 = dataReader.GetString(dataReader.GetOrdinal("Aaa03"));
-                        postDataObject.Aaa04 = dataReader.GetString(dataReader.GetOrdinal("Aaa04"));
-                        postDataObject.Aaa05 = dataReader.GetString(dataReader.GetOrdinal("Aaa05"));
-                        postDataObject.Aaa06 = dataReader.GetString(dataReader.GetOrdinal("Aaa06"));
-                        postDataObject.Aaa07 = dataReader.GetString(dataReader.GetOrdinal("Aaa07"));
-                        postDataObject.Aaa08 = dataReader.GetString(dataReader.GetOrdinal("Aaa08"));
-                        postDataObject.Aaa09 = dataReader.GetString(dataReader.GetOrdinal("Aaa09"));
+                        postDataObject.Tic01 = dataReader.GetString(dataReader.GetOrdinal("Tic01"));
+                        postDataObject.Tic02 = dataReader.GetString(dataReader.GetOrdinal("Tic02"));
+                        postDataObject.Tic03 = dataReader.GetString(dataReader.GetOrdinal("Tic03"));
+                        postDataObject.Tic04 = dataReader.GetString(dataReader.GetOrdinal("Tic04"));
+                        postDataObject.Tic05 = dataReader.GetString(dataReader.GetOrdinal("Tic05"));
+                        postDataObject.Tic06 = dataReader.GetString(dataReader.GetOrdinal("Tic06"));
+                        postDataObject.Tic07 = dataReader.GetString(dataReader.GetOrdinal("Tic07"));
+                        postDataObject.Tic08 = dataReader.GetString(dataReader.GetOrdinal("Tic08"));
+                        postDataObject.Tic09 = dataReader.GetString(dataReader.GetOrdinal("Tic09"));
 
                         postsList.Add(postDataObject);
                     }
@@ -196,10 +226,10 @@ namespace MIS_Service.Controllers
         public List<PostDataObject> GetTopPostsList(int num)
         {
             String sqlString = "SELECT TOP " + num +
-                               "       aaa01, aaa02, aaa03, aaa04, aaa05, " +
-                               "       aaa06, aaa07, aaa08 " +
-                               " FROM aaa_file " +
-                               " ORDER BY aaa01 DESC" +
+                               "       tic01, tic02, tic03, tic04, tic05, " +
+                               "       tic06, tic07, tic08 " +
+                               " FROM tic_file " +
+                               " ORDER BY tic01 DESC" +
                                "";
             List<PostDataObject> postsList = new List<PostDataObject>();
 
@@ -220,15 +250,15 @@ namespace MIS_Service.Controllers
                     {
                         PostDataObject postDataObject = new PostDataObject();
 
-                        postDataObject.Aaa01 = dataReader.GetString(dataReader.GetOrdinal("Aaa01"));
-                        postDataObject.Aaa02 = dataReader.GetString(dataReader.GetOrdinal("Aaa02"));
-                        postDataObject.Aaa03 = dataReader.GetString(dataReader.GetOrdinal("Aaa03"));
-                        postDataObject.Aaa04 = dataReader.GetString(dataReader.GetOrdinal("Aaa04"));
-                        postDataObject.Aaa05 = dataReader.GetString(dataReader.GetOrdinal("Aaa05"));
-                        postDataObject.Aaa06 = dataReader.GetString(dataReader.GetOrdinal("Aaa06"));
-                        postDataObject.Aaa07 = dataReader.GetString(dataReader.GetOrdinal("Aaa07"));
-                        postDataObject.Aaa08 = dataReader.GetString(dataReader.GetOrdinal("Aaa08"));
-                        postDataObject.Aaa09 = dataReader.GetString(dataReader.GetOrdinal("Aaa09"));
+                        postDataObject.Tic01 = dataReader.GetString(dataReader.GetOrdinal("Tic01"));
+                        postDataObject.Tic02 = dataReader.GetString(dataReader.GetOrdinal("Tic02"));
+                        postDataObject.Tic03 = dataReader.GetString(dataReader.GetOrdinal("Tic03"));
+                        postDataObject.Tic04 = dataReader.GetString(dataReader.GetOrdinal("Tic04"));
+                        postDataObject.Tic05 = dataReader.GetString(dataReader.GetOrdinal("Tic05"));
+                        postDataObject.Tic06 = dataReader.GetString(dataReader.GetOrdinal("Tic06"));
+                        postDataObject.Tic07 = dataReader.GetString(dataReader.GetOrdinal("Tic07"));
+                        postDataObject.Tic08 = dataReader.GetString(dataReader.GetOrdinal("Tic08"));
+                        postDataObject.Tic09 = dataReader.GetString(dataReader.GetOrdinal("Tic09"));
 
                         postsList.Add(postDataObject);
                     }
@@ -249,8 +279,8 @@ namespace MIS_Service.Controllers
 
         public List<PostDataObject> GetLimitPostsList(String str, String end)
         {
-            String sqlString = "SELECT * FROM aaa_file" +
-                               " ORDER BY aaa01 DESC" +
+            String sqlString = "SELECT * FROM tic_file" +
+                               " ORDER BY tic01 DESC" +
                                " OFFSET " + str + " ROWS FETCH NEXT " + end + " ROWS ONLY " +
                                "";
             List<PostDataObject> postsList = new List<PostDataObject>();
@@ -272,15 +302,15 @@ namespace MIS_Service.Controllers
                     {
                         PostDataObject postDataObject = new PostDataObject();
 
-                        postDataObject.Aaa01 = dataReader.GetString(dataReader.GetOrdinal("Aaa01"));
-                        postDataObject.Aaa02 = dataReader.GetString(dataReader.GetOrdinal("Aaa02"));
-                        postDataObject.Aaa03 = dataReader.GetString(dataReader.GetOrdinal("Aaa03"));
-                        postDataObject.Aaa04 = dataReader.GetString(dataReader.GetOrdinal("Aaa04"));
-                        postDataObject.Aaa05 = dataReader.GetString(dataReader.GetOrdinal("Aaa05"));
-                        postDataObject.Aaa06 = dataReader.GetString(dataReader.GetOrdinal("Aaa06"));
-                        postDataObject.Aaa07 = dataReader.GetString(dataReader.GetOrdinal("Aaa07"));
-                        postDataObject.Aaa08 = dataReader.GetString(dataReader.GetOrdinal("Aaa08"));
-                        postDataObject.Aaa09 = dataReader.GetString(dataReader.GetOrdinal("Aaa09"));
+                        postDataObject.Tic01 = dataReader.GetString(dataReader.GetOrdinal("Tic01"));
+                        postDataObject.Tic02 = dataReader.GetString(dataReader.GetOrdinal("Tic02"));
+                        postDataObject.Tic03 = dataReader.GetString(dataReader.GetOrdinal("Tic03"));
+                        postDataObject.Tic04 = dataReader.GetString(dataReader.GetOrdinal("Tic04"));
+                        postDataObject.Tic05 = dataReader.GetString(dataReader.GetOrdinal("Tic05"));
+                        postDataObject.Tic06 = dataReader.GetString(dataReader.GetOrdinal("Tic06"));
+                        postDataObject.Tic07 = dataReader.GetString(dataReader.GetOrdinal("Tic07"));
+                        postDataObject.Tic08 = dataReader.GetString(dataReader.GetOrdinal("Tic08"));
+                        postDataObject.Tic09 = dataReader.GetString(dataReader.GetOrdinal("Tic09"));
 
                         postsList.Add(postDataObject);
                     }
@@ -299,9 +329,11 @@ namespace MIS_Service.Controllers
             return postsList;
         }//End of getLimitPostsList
 
+      
+
         public List<PostDataObject> GetPostsListOnDemand(String sqlCriteria)
         {
-            String sqlString = "SELECT * FROM aaa_file WHERE " + sqlCriteria;
+            String sqlString = "SELECT * FROM tic_file WHERE " + sqlCriteria;
             List<PostDataObject> postsList = new List<PostDataObject>();
 
             OpenConnection();
@@ -320,15 +352,15 @@ namespace MIS_Service.Controllers
                     {
                         PostDataObject postDataObject = new PostDataObject();
 
-                        postDataObject.Aaa01 = dataReader.GetString(dataReader.GetOrdinal("Aaa01"));
-                        postDataObject.Aaa02 = dataReader.GetString(dataReader.GetOrdinal("Aaa02"));
-                        postDataObject.Aaa03 = dataReader.GetString(dataReader.GetOrdinal("Aaa03"));
-                        postDataObject.Aaa04 = dataReader.GetString(dataReader.GetOrdinal("Aaa04"));
-                        postDataObject.Aaa05 = dataReader.GetString(dataReader.GetOrdinal("Aaa05"));
-                        postDataObject.Aaa06 = dataReader.GetString(dataReader.GetOrdinal("Aaa06"));
-                        postDataObject.Aaa07 = dataReader.GetString(dataReader.GetOrdinal("Aaa07"));
-                        postDataObject.Aaa08 = dataReader.GetString(dataReader.GetOrdinal("Aaa08"));
-                        postDataObject.Aaa09 = dataReader.GetString(dataReader.GetOrdinal("Aaa09"));
+                        postDataObject.Tic01 = dataReader.GetString(dataReader.GetOrdinal("Tic01"));
+                        postDataObject.Tic02 = dataReader.GetString(dataReader.GetOrdinal("Tic02"));
+                        postDataObject.Tic03 = dataReader.GetString(dataReader.GetOrdinal("Tic03"));
+                        postDataObject.Tic04 = dataReader.GetString(dataReader.GetOrdinal("Tic04"));
+                        postDataObject.Tic05 = dataReader.GetString(dataReader.GetOrdinal("Tic05"));
+                        postDataObject.Tic06 = dataReader.GetString(dataReader.GetOrdinal("Tic06"));
+                        postDataObject.Tic07 = dataReader.GetString(dataReader.GetOrdinal("Tic07"));
+                        postDataObject.Tic08 = dataReader.GetString(dataReader.GetOrdinal("Tic08"));
+                        postDataObject.Tic09 = dataReader.GetString(dataReader.GetOrdinal("Tic09"));
 
                         postsList.Add(postDataObject);
                     }
@@ -348,7 +380,7 @@ namespace MIS_Service.Controllers
 
         public String ConfirmedDelete(String postID)
         {
-            String sqlString = "DELETE FROM aaa_file WHERE aaa01 = '" + postID + "'";
+            String sqlString = "DELETE FROM tic_file WHERE tic01 = '" + postID + "'";
             int deletedRows;
             actionResult = "SUCCESS";
             try
@@ -376,10 +408,10 @@ namespace MIS_Service.Controllers
 
         public String ConfirmedEdit(PostDataObject postDataObject)
         {
-            String sqlString = "UPDATE aaa_file SET aaa05 = @val01," +
-                               "                    aaa06 = @val02," +
-                               "                    aaa07 = @val03 " +
-                               "WHERE aaa01 = @val04 " +
+            String sqlString = "UPDATE tic_file SET tic05 = @val01," +
+                               "                    tic06 = @val02," +
+                               "                    tic07 = @val03 " +
+                               "WHERE tic01 = @val04 " +
                                "";
             actionResult = "SUCCESS";
             try
@@ -387,10 +419,10 @@ namespace MIS_Service.Controllers
                 OpenConnection();
 
                 SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@val01", postDataObject.Aaa05);
-                sqlCommand.Parameters.AddWithValue("@val02", postDataObject.Aaa06);
-                sqlCommand.Parameters.AddWithValue("@val03", postDataObject.Aaa07);
-                sqlCommand.Parameters.AddWithValue("@val04", postDataObject.Aaa01);
+                sqlCommand.Parameters.AddWithValue("@val01", postDataObject.Tic05);
+                sqlCommand.Parameters.AddWithValue("@val02", postDataObject.Tic06);
+                sqlCommand.Parameters.AddWithValue("@val03", postDataObject.Tic07);
+                sqlCommand.Parameters.AddWithValue("@val04", postDataObject.Tic01);
                 sqlCommand.ExecuteNonQuery();
 
             }
@@ -406,59 +438,15 @@ namespace MIS_Service.Controllers
 
             return actionResult;
         }
+     
 
-        public List<SelectListItem> getOfficeItem()
+        private string selectticDataSQL;
+        public String getSelectticDataSQL(String postID)
         {
-            string sqlString = "SELECT * " +
-                               "  FROM zzb_file " +
-                               " ORDER BY zzb01 ASC" +
-                               "";
-            List<SelectListItem> officeDataItems = new List<SelectListItem>();
+            this.selectticDataSQL =
+                " SELECT * FROM tic_file WHERE tic01 = '" + postID + "'";
 
-            OpenConnection();
-            actionResult = "SUCCESS";
-
-            try
-            {
-                SqlCommand sqlCommand = sqlConnection.CreateCommand();
-
-                sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = sqlString;
-
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                if (dataReader.HasRows)
-                {
-                    while (dataReader.Read())
-                    {
-                        officeDataItems.Add(new SelectListItem
-                        {
-                            Text = dataReader["Zzb02"].ToString(),
-                            Value = dataReader["Zzb01"].ToString()
-                        });
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                string v = "FAIL" + ex.Message;
-                actionResult = v;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-
-            return officeDataItems;
-        }
-
-        private string selectaaaDataSQL;
-        public String getSelectaaaDataSQL(String postID)
-        {
-            this.selectaaaDataSQL =
-                " SELECT * FROM aaa_file WHERE aaa01 = '" + postID + "'";
-
-            return this.selectaaaDataSQL;
+            return this.selectticDataSQL;
         }
 
         public DataTable GetDataTable(String sql)
@@ -488,14 +476,14 @@ namespace MIS_Service.Controllers
             return dataTable;
         }
 
-        public int SelectHy_TicRowCounts(string key1)
+        public int SelectTigRowCounts(string key1)
         {
             OpenConnection();
             dataCount = 0;
             try
             {
-                sql = " Select count (hy_tic01) from hy_tic_file " +
-                    " where hy_tic01 ='" + key1 + "'" ;
+                sql = " Select count (tig01) from tig_file " +
+                    " where tig01 ='" + key1 + "'" ;
                 SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = sql;
@@ -520,9 +508,9 @@ namespace MIS_Service.Controllers
 
         public String InsertPostlog(PostDataLog postDataLog)
         {
-            String sqlString = "INSERT INTO hy_tic_file ( " +
-                                    " hy_tic01  , hy_tic02  , hy_tic03  , hy_tic04  , hy_tic05  , " +
-                                    " hy_tic06  , hy_tic07  , hy_tic08  , hy_tic09   " +
+            String sqlString = "INSERT INTO tig_file ( " +
+                                    " tig01  , tig02  , tig03  , tig04  , tig05  , " +
+                                    " tig06  , tig07  , tig08  , tig09   " +
                                     ") VALUES ( " +
                                     " @val01, @val02, @val03, @val04, @val05, @val06, " +
                                     " @val07, @val08, @val09                                  " +
@@ -537,15 +525,15 @@ namespace MIS_Service.Controllers
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = sqlString;
 
-                sqlCommand.Parameters.AddWithValue("@val01", postDataLog.Hy_tic01);
-                sqlCommand.Parameters.AddWithValue("@val02", postDataLog.Hy_tic02);
-                sqlCommand.Parameters.AddWithValue("@val03", postDataLog.Hy_tic03);
-                sqlCommand.Parameters.AddWithValue("@val04", postDataLog.Hy_tic04);
-                sqlCommand.Parameters.AddWithValue("@val05", postDataLog.Hy_tic05);
-                sqlCommand.Parameters.AddWithValue("@val06", postDataLog.Hy_tic06);
-                sqlCommand.Parameters.AddWithValue("@val07", postDataLog.Hy_tic07);
-                sqlCommand.Parameters.AddWithValue("@val08", postDataLog.Hy_tic08);
-                sqlCommand.Parameters.AddWithValue("@val09", postDataLog.Hy_tic09);
+                sqlCommand.Parameters.AddWithValue("@val01", postDataLog.Tig01);
+                sqlCommand.Parameters.AddWithValue("@val02", postDataLog.Tig02);
+                sqlCommand.Parameters.AddWithValue("@val03", postDataLog.Tig03);
+                sqlCommand.Parameters.AddWithValue("@val04", postDataLog.Tig04);
+                sqlCommand.Parameters.AddWithValue("@val05", postDataLog.Tig05);
+                sqlCommand.Parameters.AddWithValue("@val06", postDataLog.Tig06);
+                sqlCommand.Parameters.AddWithValue("@val07", postDataLog.Tig07);
+                sqlCommand.Parameters.AddWithValue("@val08", postDataLog.Tig08);
+                sqlCommand.Parameters.AddWithValue("@val09", postDataLog.Tig09);
 
                 sqlCommand.ExecuteNonQuery();
             }
@@ -562,8 +550,8 @@ namespace MIS_Service.Controllers
 
         public List<PostDataLog> GetLimitLogsList(String str, String end)
         {
-            String sqlString = "SELECT * FROM hy_tic_file" +
-                               " ORDER BY hy_tic01 DESC" +
+            String sqlString = "SELECT * FROM tig_file" +
+                               " ORDER BY tig01 DESC" +
                                " OFFSET " + str + " ROWS FETCH NEXT " + end + " ROWS ONLY " +
                                "";
             List<PostDataLog> postsList = new List<PostDataLog>();
@@ -585,15 +573,15 @@ namespace MIS_Service.Controllers
                     {
                         PostDataLog postDataLog = new PostDataLog();
 
-                        postDataLog.Hy_tic01 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic01"));
-                        postDataLog.Hy_tic02 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic02"));
-                        postDataLog.Hy_tic03 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic03"));
-                        postDataLog.Hy_tic04 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic04"));
-                        postDataLog.Hy_tic05 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic05"));
-                        postDataLog.Hy_tic06 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic06"));
-                        postDataLog.Hy_tic07 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic07"));
-                        postDataLog.Hy_tic08 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic08"));
-                        postDataLog.Hy_tic09 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic09"));
+                        postDataLog.Tig01 = dataReader.GetString(dataReader.GetOrdinal("tig01"));
+                        postDataLog.Tig02 = dataReader.GetString(dataReader.GetOrdinal("tig02"));
+                        postDataLog.Tig03 = dataReader.GetString(dataReader.GetOrdinal("tig03"));
+                        postDataLog.Tig04 = dataReader.GetString(dataReader.GetOrdinal("tig04"));
+                        postDataLog.Tig05 = dataReader.GetString(dataReader.GetOrdinal("tig05"));
+                        postDataLog.Tig06 = dataReader.GetString(dataReader.GetOrdinal("tig06"));
+                        postDataLog.Tig07 = dataReader.GetString(dataReader.GetOrdinal("tig07"));
+                        postDataLog.Tig08 = dataReader.GetString(dataReader.GetOrdinal("tig08"));
+                        postDataLog.Tig09 = dataReader.GetString(dataReader.GetOrdinal("tig09"));
 
                         postsList.Add(postDataLog);
                     }
@@ -615,7 +603,7 @@ namespace MIS_Service.Controllers
 
         public List<PostDataLog> GetPostsLogOnDemand(String sqlCriteria)
         {
-            String sqlString = "SELECT * FROM hy_tic_file WHERE " + sqlCriteria;
+            String sqlString = "SELECT * FROM tig_file WHERE " + sqlCriteria;
             List<PostDataLog> postsLog = new List<PostDataLog>();
 
             OpenConnection();
@@ -634,15 +622,15 @@ namespace MIS_Service.Controllers
                     {
                         PostDataLog postDataLog = new PostDataLog();
 
-                        postDataLog.Hy_tic01 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic01"));
-                        postDataLog.Hy_tic02 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic02"));
-                        postDataLog.Hy_tic03 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic03"));
-                        postDataLog.Hy_tic04 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic04"));
-                        postDataLog.Hy_tic05 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic05"));
-                        postDataLog.Hy_tic06 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic06"));
-                        postDataLog.Hy_tic07 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic07"));
-                        postDataLog.Hy_tic08 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic08"));
-                        postDataLog.Hy_tic09 = dataReader.GetString(dataReader.GetOrdinal("Hy_tic09"));
+                        postDataLog.Tig01 = dataReader.GetString(dataReader.GetOrdinal("tig01"));
+                        postDataLog.Tig02 = dataReader.GetString(dataReader.GetOrdinal("tig02"));
+                        postDataLog.Tig03 = dataReader.GetString(dataReader.GetOrdinal("tig03"));
+                        postDataLog.Tig04 = dataReader.GetString(dataReader.GetOrdinal("tig04"));
+                        postDataLog.Tig05 = dataReader.GetString(dataReader.GetOrdinal("tig05"));
+                        postDataLog.Tig06 = dataReader.GetString(dataReader.GetOrdinal("tig06"));
+                        postDataLog.Tig07 = dataReader.GetString(dataReader.GetOrdinal("tig07"));
+                        postDataLog.Tig08 = dataReader.GetString(dataReader.GetOrdinal("tig08"));
+                        postDataLog.Tig09 = dataReader.GetString(dataReader.GetOrdinal("tig09"));
 
                         postsLog.Add(postDataLog);
                     }

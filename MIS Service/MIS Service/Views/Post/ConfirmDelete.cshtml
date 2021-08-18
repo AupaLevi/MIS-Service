@@ -18,28 +18,44 @@
                 <h4 class="mb-3">Confirm Delete Post</h4>
                 @foreach (var eachPostData in ViewBag.ListOfPosts as List<MIS_Service.Models.PostDataObject>)
                 {
-                    using (Html.BeginForm("ConfirmedDelete", "Post", new { postID = eachPostData.Aaa01 }, FormMethod.Post))
+                    using (Html.BeginForm("ConfirmedDelete", "Post", new { postID = eachPostData.Tic01 }, FormMethod.Post))
                     {
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <input type="hidden" placeholder="@eachPostData.Aaa01" />
+                                <input type="hidden" placeholder="@eachPostData.Tic01" />
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="Aaa04">刪除 申請部門</label>
-                            <input type="text" class="form-control" placeholder="@eachPostData.Aaa04" readonly />
+                            <label for="Tic01">刪除 申請日期</label>
+                            <input type="text" class="form-control" placeholder="@eachPostData.Tic01" readonly />
                         </div>
                         <div class="mb-3">
-                            <label for="Aaa05">刪除 申請目的</label>
-                            <textarea class="form-control" placeholder="@eachPostData.Aaa05" rows="3" readonly></textarea>
+                            <label for="Tic02">刪除 收件日期</label>
+                            <input type="text" class="form-control" placeholder="@eachPostData.Tic02" readonly />
                         </div>
                         <div class="mb-3">
-                            <label for="Aaa06">刪除 申請內容</label>
-                            <textarea class="form-control" placeholder="@eachPostData.Aaa06" rows="5" readonly></textarea>
+                            <label for="Tic03">刪除 表單序號</label>
+                            <input type="text" class="form-control" placeholder="@eachPostData.Tic03" readonly />
                         </div>
                         <div class="mb-3">
-                            <label for="Aaa07">刪除 完成日</label>
-                            <input type="text" class="form-control" placeholder="@eachPostData.Aaa07" readonly />
+                            <label for="Tic04">刪除 申請部門</label>
+                            <input type="text" class="form-control" placeholder="@eachPostData.Tic04" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Tic05">刪除 申請目的</label>
+                            <input type="text" class="form-control" placeholder="@eachPostData.Tic04" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Tic06">刪除 申請內容</label>
+                            <textarea class="form-control" placeholder="@eachPostData.Tic06" rows="3" readonly></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Tic07">刪除 預定完成日</label>
+                            <textarea class="form-control" placeholder="@eachPostData.Tic07" rows="5" readonly></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Tic08">刪除 工單結案日</label>
+                            <input type="text" class="form-control" placeholder="@eachPostData.Tic08" readonly />
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -47,7 +63,7 @@
                         </div>
                         <input type="submit" class="btn btn-primary" value="Delete"
                                onclick="@("window.location.href='" + @Url.Action("DeleteConfirmed", "Post",
-                                        new { postID=eachPostData.Aaa01}) + "'");" />
+                                        new { postID=eachPostData.Tic01}) + "'");" />
                         <button type="button" class="btn btn-primary" onclick="history.go(-1)">Cancel</button>
                     }
                 }

@@ -134,6 +134,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageOperation.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\PostLogController.cs" />
     <Compile Include="Controllers\SQLServerConnector.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +144,7 @@
     <Compile Include="Models\PostDataLog.cs" />
     <Compile Include="Models\PostDataObject.cs" />
     <Compile Include="Models\PostDataViewModel.cs" />
+    <Compile Include="Models\PostLogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +185,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="libman.json" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -294,8 +297,8 @@
     <Content Include="Views\Post\CreatePost.cshtml" />
     <Content Include="Views\Post\ConfirmDelete.cshtml" />
     <Content Include="Views\Post\PostDetail.cshtml" />
-    <Content Include="Views\Post\PostLogTickets.cshtml" />
-    <Content Include="Views\Post\PostLogDetail.cshtml" />
+    <Content Include="Views\PostLog\AddPostedLog.cshtml" />
+    <Content Include="Views\PostLog\PostLogDetail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

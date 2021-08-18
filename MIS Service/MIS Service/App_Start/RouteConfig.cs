@@ -24,6 +24,9 @@ namespace MIS_Service
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Post", action = "PostDetail", id = UrlParameter.Optional }
             );
+
+          
+           
         }
     }
 }

@@ -54,7 +54,7 @@ namespace MIS_Service.Controllers
         {
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
             //PageBean pageBean = new PageBean();
-            List<PostDataObject> listPosts;
+            List<PostDataObject> listPosts;           
             List<PageBean> pageNumberList;
             //listPosts = sqlServerConnector.GetPostsList();
             int pageTotalCount = sqlServerConnector.GetTotalCount();
@@ -118,14 +118,14 @@ namespace MIS_Service.Controllers
         }
         // POST: Students/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "aaa03,aaa04,aaa05,aaa06,aaa07,aaa08,aaa09")] PostDataObject postDataObject)
+        public ActionResult Create([Bind(Include = "tic03,tic04,tic05,tic06,tic07,tic08,tic09")] PostDataObject postDataObject)
         {
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
             //List<PostDataObject> listPosts;
             //listPosts = sqlServerConnector.getPostsList();
 
-            postDataObject.Aaa01 = DateTime.Now.ToString("yyyyMMddHHmmss");
-            postDataObject.Aaa02 = DateTime.Now.ToString("yyyy-MM-dd");  //Post Date
+            postDataObject.Tic01 = DateTime.Now.ToString("yyyyMMddHHmmss");
+            postDataObject.Tic02 = DateTime.Now.ToString("yyyy-MM-dd");  //Post Date
 
             
             //postDataObject.Aaa07 = "";
@@ -150,7 +150,7 @@ namespace MIS_Service.Controllers
                 {
                     postID = postID.Remove(postID.Length - 1, postID.Length);
                 }
-                sqlCriteria = "aaa01 LIKE '%" + postID + "%' ";
+                sqlCriteria = "tic01 LIKE '%" + postID + "%' ";
             }
 
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
@@ -181,7 +181,7 @@ namespace MIS_Service.Controllers
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
             List<PostDataObject> listPosts;
             PostDataObject postDataObjectForEdit;
-            String sqlCriteria = "aaa01 = '" + postID + "'";
+            String sqlCriteria = "tic01 = '" + postID + "'";
 
             listPosts = sqlServerConnector.GetPostsListOnDemand(sqlCriteria);
 
@@ -193,12 +193,12 @@ namespace MIS_Service.Controllers
         }
 
         [HttpPost, ActionName("ConfirmedEdit")]
-        public ActionResult UpdatePost([Bind(Include = "Aaa01,Aaa02,Aaa03,Aaa04,Aaa05,Aaa06,Aaa07")] PostDataObject postDataObject)
+        public ActionResult UpdatePost([Bind(Include = "Tic01,Tic02,Tic03,Tic04,Tic05,Tic06,Tic07")] PostDataObject postDataObject)
         {
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
 
             //postDataObject.Aaa02 = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            postDataObject.Aaa08 = "";
+            postDataObject.Tic08 = "";
             String result = sqlServerConnector.ConfirmedEdit(postDataObject);
             List<PostDataObject> listPosts = new List<PostDataObject>();
             if (result == "SUCCESS")
@@ -225,7 +225,7 @@ namespace MIS_Service.Controllers
                 {
                     postID = postID.Remove(postID.Length - 1, postID.Length);
                 }
-                sqlCriteria = "aaa01 LIKE '%" + postID + "%' ";
+                sqlCriteria = "tic01 LIKE '%" + postID + "%' ";
             }
 
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
@@ -237,30 +237,30 @@ namespace MIS_Service.Controllers
             ViewBag.PostDataForDetail = postDataObjectForDetail;
             //return View("PostDetail", listPosts);
 
-
-
             return View("PostDetail", postDataObjectForDetail);
         }
 
         [HttpPost, ActionName("PostDetail")]
-        public ActionResult InputTicketsLog(String postID)
+        public ActionResult InputTicketToLog(String postID)
         {
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
-            string logSQLString = sqlServerConnector.getSelectaaaDataSQL(postID);
+            string logSQLString = sqlServerConnector.getSelectticDataSQL(postID);
             DataTable dataTable;
             string sqlResult;
             List<PostDataLog> goodpostDataLog;
             List<PostDataLog> insertedpostDataLog;
+
             PostDataLog postDataLog;
             string actionResult;
             int dataCount;
+
 
             dataTable = sqlServerConnector.GetDataTable(logSQLString);
             sqlResult = "";
 
             goodpostDataLog = new List<PostDataLog>();
 
-            if (dataTable.Rows.Count >0)
+            if (dataTable.Rows.Count > 0)
             {
                 postDataLog = new PostDataLog();
                 foreach (DataRow row in dataTable.Rows)
@@ -270,16 +270,16 @@ namespace MIS_Service.Controllers
 
                     try
                     {
-                        postDataLog.Hy_tic01 = row[dataTable.Columns["aaa01"]].ToString();
-                        postDataLog.Hy_tic02 = (row[dataTable.Columns["aaa02"]]) == DBNull.Value ? "" :
-                            Convert.ToDateTime(row[dataTable.Columns["aaa02"]]).ToString("yyyy-MM-dd");
-                        postDataLog.Hy_tic03 = row[dataTable.Columns["aaa03"]].ToString();
-                        postDataLog.Hy_tic04 = row[dataTable.Columns["aaa04"]].ToString();
-                        postDataLog.Hy_tic05 = row[dataTable.Columns["aaa05"]].ToString();
-                        postDataLog.Hy_tic06 = row[dataTable.Columns["aaa06"]].ToString();
-                        postDataLog.Hy_tic07 = row[dataTable.Columns["aaa07"]].ToString();
-                        postDataLog.Hy_tic08 = row[dataTable.Columns["aaa08"]].ToString();
-                        postDataLog.Hy_tic09 = row[dataTable.Columns["aaa09"]].ToString();
+                        postDataLog.Tig01 = row[dataTable.Columns["tic01"]].ToString();
+                        postDataLog.Tig02 = (row[dataTable.Columns["tic02"]]) == DBNull.Value ? "" :
+                            Convert.ToDateTime(row[dataTable.Columns["tic02"]]).ToString("yyyy-MM-dd");
+                        postDataLog.Tig03 = row[dataTable.Columns["tic03"]].ToString();
+                        postDataLog.Tig04 = row[dataTable.Columns["tic04"]].ToString();
+                        postDataLog.Tig05 = row[dataTable.Columns["tic05"]].ToString();
+                        postDataLog.Tig06 = row[dataTable.Columns["tic06"]].ToString();
+                        postDataLog.Tig07 = row[dataTable.Columns["tic07"]].ToString();
+                        postDataLog.Tig08 = row[dataTable.Columns["tic08"]].ToString();
+                        postDataLog.Tig09 = row[dataTable.Columns["tic09"]].ToString();
 
                     }
                     catch (Exception ex)
@@ -293,19 +293,19 @@ namespace MIS_Service.Controllers
                         if (sqlResult == "Y")
                         {
                             dataCount = 0;
-                            dataCount = sqlServerConnector.SelectHy_TicRowCounts(postDataLog.Hy_tic01);
+                            dataCount = sqlServerConnector.SelectTigRowCounts(postDataLog.Tig01);
                             if (dataCount == 0)
                             {
                                 goodpostDataLog.Add(postDataLog);
                             }
-                           
+
                         }
                     }
                 }
                 actionResult = "FAILED";
                 insertedpostDataLog = new List<PostDataLog>();
 
-                if (goodpostDataLog.Count >0)
+                if (goodpostDataLog.Count > 0)
                 {
                     foreach (PostDataLog postInsLog in goodpostDataLog)
                     {
@@ -319,75 +319,10 @@ namespace MIS_Service.Controllers
 
             }
 
+            string DelResult = sqlServerConnector.ConfirmedDelete(postID);
+
+
             return RedirectToAction("AddNewPost", "Post");
-        }
-
-
-        public ActionResult PostLogTickets()
-        {
-            SQLServerConnector sqlServerConnector = new SQLServerConnector();
-            //PageBean pageBean = new PageBean();
-            List<PostDataLog> listLogs;
-            List<PageBean> pageNumberList;
-            //listPosts = sqlServerConnector.GetPostsList();
-            int pageTotalCount = sqlServerConnector.GetTotalCount();
-
-
-            PageOperation pageOperation = new PageOperation(pageTotalCount);
-            int currentPage = 1;
-            pageNumberList = pageOperation.GetPageNumberList();
-            int pageCount = pageOperation.GetPageCount();
-            int startPageNum = pageOperation.GetStartNumber(currentPage);
-            int endPageNum = pageOperation.GetEndNumber();
-            int previousPageNumber = 1;
-            int nextPageNumber = previousPageNumber + 1;
-            listLogs = sqlServerConnector.GetLimitLogsList("0", "5");
-
-            PostDataViewModel postDataViewModel = new PostDataViewModel();
-            postDataViewModel.PostLogList = listLogs;
-            postDataViewModel.PageNumberList = pageNumberList;
-            postDataViewModel.PageCount = pageCount;
-            postDataViewModel.CurrentPage = currentPage;
-            postDataViewModel.StrPageNum = startPageNum;
-            postDataViewModel.EndPageNum = endPageNum;
-            postDataViewModel.PreviousPageNumber = previousPageNumber;
-            postDataViewModel.NextPageNumber = nextPageNumber;
-            postDataViewModel.FirstPage = true;
-            postDataViewModel.LastPage = false;
-
-            //ViewBag.ListOfPosts = listPosts;
-            //return View(listPosts);
-            return View(postDataViewModel);
-        }
-
-        public ActionResult PostLogDetail(String postID)
-        {
-            String sqlCriteria = "";
-            if (postID != null && !postID.IsEmpty())
-            {
-                if (postID.StartsWith("*"))
-                {
-                    postID = postID.Remove(1, 1);
-                }
-                if (postID.EndsWith("*"))
-                {
-                    postID = postID.Remove(postID.Length - 1, postID.Length);
-                }
-                sqlCriteria = "hy_tic01 LIKE '%" + postID + "%' ";
-            }
-
-            SQLServerConnector sqlServerConnector = new SQLServerConnector();
-            List<PostDataLog> listLogs;
-            PostDataLog postDataLogForDetail;
-            listLogs = sqlServerConnector.GetPostsLogOnDemand(sqlCriteria);
-            postDataLogForDetail = listLogs[0];
-            //ViewBag.ListOfPosts = listPosts;
-            ViewBag.PostLogForDetail = postDataLogForDetail;
-            //return View("PostDetail", listPosts);
-
-
-
-            return View("PostLogDetail", postDataLogForDetail);
         }
     }
 }

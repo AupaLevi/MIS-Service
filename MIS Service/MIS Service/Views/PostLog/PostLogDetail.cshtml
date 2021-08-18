@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "PostLogTickets";
+}
+@model MIS_Service.Models.PostDataLog
+<br />
+<br />
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Log Tickets</h4>
+                @using (Html.BeginForm("PostLogDetail", "PostLog", new { postID = Model.Tig01 }, FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            @Html.HiddenFor(model => model.Tig01)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tig02">申請日期</label>
+                        @Html.TextBoxFor(model => model.Tig02, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tig03">收件日期</label>
+                        @Html.TextBoxFor(model => model.Tig03, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tig04">表單序號</label>
+                        @Html.TextBoxFor(model => model.Tig04, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tig05">申請部門</label>
+                        @Html.TextBoxFor(model => model.Tig05, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tig06">申請目的</label>
+                        @Html.TextBoxFor(model => model.Tig06, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tig07">申請內容</label>
+                        @Html.TextBoxFor(model => model.Tig07, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tig08">完成日</label>
+                        @Html.TextBoxFor(model => model.Tig08, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tig09">服務單結案日</label>
+                        @Html.TextBoxFor(model => model.Tig09, new { @class = "form-control" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                        </div>
+                    </div>
+                }
+
+                <button type="button" class="btn btn-primary" onclick="history.go(-1)">返回</button>
+
+            </div>
+        </div>
+    </div>
+</body>

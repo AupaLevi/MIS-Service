@@ -4,26 +4,26 @@ namespace MIS_Service.Models
 {
     public class PostDataObject
     {
-        private string aaa01;
-        private string aaa02;
-        private string aaa03;
-        private string aaa04;
-        private string aaa05;
-        private string aaa06;
+        private string tic01;
+        private string tic02;
+        private string tic03;
+        private string tic04;
+        private string tic05;
+        private string tic06;
 
-        private string aaa07;
-        private string aaa08;
-        private string aaa09;
+        private string tic07;
+        private string tic08;
+        private string tic09;
 
-        public string Aaa01 { get => aaa01; set => aaa01 = value; }
-        public string Aaa02 { get => aaa02; set => aaa02 = value; }
-        public string Aaa03 { get => aaa03; set => aaa03 = value; }
-        public string Aaa04 { get => aaa04; set => aaa04 = value; }
-        public string Aaa05 { get => aaa05; set => aaa05 = value; }
-        public string Aaa06 { get => aaa06; set => aaa06 = value; }
+        public string Tic01 { get => tic01; set => tic01 = value; }
+        public string Tic02 { get => tic02; set => tic02 = value; }
+        public string Tic03 { get => tic03; set => tic03 = value; }
+        public string Tic04 { get => tic04; set => tic04 = value; }
+        public string Tic05 { get => tic05; set => tic05 = value; }
+        public string Tic06 { get => tic06; set => tic06 = value; }
         [AllowHtml]
-        public string Aaa07 { get => aaa07; set => aaa07 = value; }
-        public string Aaa08 { get => aaa08; set => aaa08 = value; }
-        public string Aaa09 { get => aaa09; set => aaa09 = value; }
+        public string Tic07 { get => tic07; set => tic07 = value; }
+        public string Tic08 { get => tic08; set => tic08 = value; }
+        public string Tic09 { get => tic09; set => tic09 = value; }
     }
 }

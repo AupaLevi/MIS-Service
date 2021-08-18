@@ -15,54 +15,54 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">MIS 服務申請紀錄單 明細</h4>
-                @using (Html.BeginForm("PostDetail", "Post", new { postID = Model.Aaa01 }, FormMethod.Post))
+                @using (Html.BeginForm("PostDetail", "Post", new { postID = Model.Tic01 }, FormMethod.Post))
                 {
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            @Html.HiddenFor(model => model.Aaa01)
+                            @Html.HiddenFor(model => model.Tic01)
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="Aaa02">申請日期</label>
-                        @Html.TextBoxFor(model => model.Aaa02, new { @class = "form-control" })
+                        <label for="Tic02">申請日期</label>
+                        @Html.TextBoxFor(model => model.Tic02, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Aaa03">收件日期</label>
-                        @Html.TextBoxFor(model => model.Aaa03, new { @class = "form-control" })
+                        <label for="Tic03">收件日期</label>
+                        @Html.TextBoxFor(model => model.Tic03, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Aaa04">表單序號</label>
-                        @Html.TextBoxFor(model => model.Aaa04, new { @class = "form-control" })
+                        <label for="Tic04">表單序號</label>
+                        @Html.TextBoxFor(model => model.Tic04, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Aaa05">申請部門</label>
-                        @Html.TextBoxFor(model => model.Aaa05, new { @class = "form-control" })
+                        <label for="Tic05">申請部門</label>
+                        @Html.TextBoxFor(model => model.Tic05, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Aaa06">申請目的</label>
-                        @Html.TextBoxFor(model => model.Aaa06, new { @class = "form-control" })
+                        <label for="Tic06">申請目的</label>
+                        @Html.TextBoxFor(model => model.Tic06, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Aaa07">申請內容</label>
-                        @Html.TextBoxFor(model => model.Aaa07, new { @class = "form-control" })
+                        <label for="Tic07">申請內容</label>
+                        @Html.TextBoxFor(model => model.Tic07, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Aaa08">完成日</label>
-                        @Html.TextBoxFor(model => model.Aaa08, new { @class = "form-control" })
+                        <label for="Tic08">預定完成日</label>
+                        @Html.TextBoxFor(model => model.Tic08, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Aaa09">服務單結案日</label>
-                        @Html.TextBoxFor(model => model.Aaa09, new { @class = "form-control" })
+                        <label for="Tic09">服務單結案日</label>
+                        @Html.TextBoxFor(model => model.Tic09, new { @class = "form-control" })
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                         </div>
                     </div>
-
                     <button type="submit" class="btn btn-primary">結案</button>
+                    <button type="button" class="btn btn-primary" onclick="history.go(-1)">返回</button>
                 }
-                
-                <button type="button" class="btn btn-primary" onclick="history.go(-1)">返回</button>
+
+
 
             </div>
         </div>
