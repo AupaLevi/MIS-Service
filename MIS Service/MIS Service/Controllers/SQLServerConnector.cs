@@ -408,10 +408,14 @@ namespace MIS_Service.Controllers
 
         public String ConfirmedEdit(PostDataObject postDataObject)
         {
-            String sqlString = "UPDATE tic_file SET tic05 = @val01," +
-                               "                    tic06 = @val02," +
-                               "                    tic07 = @val03 " +
-                               "WHERE tic01 = @val04 " +
+            String sqlString = "UPDATE tic_file SET tic03 = @val01," +
+                               "                    tic04 = @val02," +
+                               "                    tic05 = @val03, " +
+                               "                    tic06 = @val04, " +
+                               "                    tic07 = @val05, " +
+                               "                    tic08 = @val06, " +
+                               "                    tic09 = @val07 " +
+                               "WHERE tic01 = @val08 " +
                                "";
             actionResult = "SUCCESS";
             try
@@ -419,10 +423,15 @@ namespace MIS_Service.Controllers
                 OpenConnection();
 
                 SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@val01", postDataObject.Tic05);
-                sqlCommand.Parameters.AddWithValue("@val02", postDataObject.Tic06);
-                sqlCommand.Parameters.AddWithValue("@val03", postDataObject.Tic07);
-                sqlCommand.Parameters.AddWithValue("@val04", postDataObject.Tic01);
+                sqlCommand.Parameters.AddWithValue("@val01", postDataObject.Tic03);
+                sqlCommand.Parameters.AddWithValue("@val02", postDataObject.Tic04);
+                sqlCommand.Parameters.AddWithValue("@val03", postDataObject.Tic05);
+                sqlCommand.Parameters.AddWithValue("@val04", postDataObject.Tic06);
+                sqlCommand.Parameters.AddWithValue("@val05", postDataObject.Tic07);
+                sqlCommand.Parameters.AddWithValue("@val06", postDataObject.Tic08);
+                sqlCommand.Parameters.AddWithValue("@val07", postDataObject.Tic09);
+                sqlCommand.Parameters.AddWithValue("@val08", postDataObject.Tic01);
+
                 sqlCommand.ExecuteNonQuery();
 
             }

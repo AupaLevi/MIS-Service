@@ -2,8 +2,7 @@
     ViewBag.Title = "EditPost";
 }
 @model MIS_Service.Models.PostDataObject
-<br />
-<br />
+
 <body class="bg-light">
     <div class="container">
         <div class="py-5 text-center">
@@ -23,36 +22,36 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="Tic01">修改 申請日期</label>
-                        @Html.TextBoxFor(model => model.Tic01, new { @class = "form-control" })
+                        <label for="Tic01">申請日期</label>
+                        @Html.TextBoxFor(model => model.Tic02, new { @class = "form-control" , @readonly = "true" })
                     </div>
                     <div class="mb-3">
                         <label for="Tic02">修改 收件日期</label>
-                        @Html.TextBoxFor(model => model.Tic02, new { @class = "form-control" })
-                    </div>
-                    <div class="mb-3">
-                        <label for="Tic03">修改 表單序號</label>
                         @Html.TextBoxFor(model => model.Tic03, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Tic04">修改 申請部門</label>
+                        <label for="Tic03">修改 表單序號</label>
                         @Html.TextBoxFor(model => model.Tic04, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
+                        <label for="Tic04">修改 申請部門</label>
+                        @Html.TextBoxFor(model => model.Tic05, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
                         <label for="Tic05">修改 申請目的</label>
-                        @Html.TextAreaFor(model => model.Tic05, new { @class = "form-control", rows = "2", id = "PostContent", name = "PostContent" })
+                        @Html.TextAreaFor(model => model.Tic06, new { @class = "form-control", rows = "2", id = "PostContent", name = "PostContent" })
                     </div>
                     <div class="mb-3">
                         <label for="Tic06">修改 申請內容</label>
-                        @Html.TextAreaFor(model => model.Tic06, new { @class = "form-control", rows = "3", id = "PostContent", name = "PostContent" })
+                        @Html.TextAreaFor(model => model.Tic07, new { @class = "form-control", rows = "3", id = "PostContent", name = "PostContent" })
                     </div>
                     <div class="mb-3">
                         <label for="Tic07">修改 預定完成日</label>
-                        @Html.TextBoxFor(model => model.Tic07, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.Tic08, new { @class = "form-control" })
                     </div>
                     <div class="mb-3">
-                        <label for="Tic08">修改 工單結案日</label>
-                        @Html.TextBoxFor(model => model.Tic08, new { @class = "form-control" })
+                        <label for="Tic08">服務單結案日</label>
+                        @Html.TextBoxFor(model => model.Tic09, new { @class = "form-control" })
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">

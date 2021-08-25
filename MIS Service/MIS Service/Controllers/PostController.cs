@@ -116,9 +116,9 @@ namespace MIS_Service.Controllers
         {
             return View();
         }
-        // POST: Students/Create
+        // POST: Tickets/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "tic03,tic04,tic05,tic06,tic07,tic08,tic09")] PostDataObject postDataObject)
+        public ActionResult Create([Bind(Include = "tic03,tic04,tic05,tic06,tic07,tic08")] PostDataObject postDataObject)
         {
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
             //List<PostDataObject> listPosts;
@@ -126,10 +126,7 @@ namespace MIS_Service.Controllers
 
             postDataObject.Tic01 = DateTime.Now.ToString("yyyyMMddHHmmss");
             postDataObject.Tic02 = DateTime.Now.ToString("yyyy-MM-dd");  //Post Date
-
-            
-            //postDataObject.Aaa07 = "";
-            //postDataObject.Aaa08 = "";
+            postDataObject.Tic09 = "";
 
             String result = sqlServerConnector.InsertPostData(postDataObject);
 
@@ -193,13 +190,12 @@ namespace MIS_Service.Controllers
         }
 
         [HttpPost, ActionName("ConfirmedEdit")]
-        public ActionResult UpdatePost([Bind(Include = "Tic01,Tic02,Tic03,Tic04,Tic05,Tic06,Tic07")] PostDataObject postDataObject)
+        public ActionResult UpdatePost([Bind(Include = "Tic01,Tic02,Tic03,Tic04,Tic05,Tic06,Tic07,Tic08,Tic09")] PostDataObject postDataObject)
         {
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
 
-            //postDataObject.Aaa02 = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            postDataObject.Tic08 = "";
             String result = sqlServerConnector.ConfirmedEdit(postDataObject);
+
             List<PostDataObject> listPosts = new List<PostDataObject>();
             if (result == "SUCCESS")
             {
