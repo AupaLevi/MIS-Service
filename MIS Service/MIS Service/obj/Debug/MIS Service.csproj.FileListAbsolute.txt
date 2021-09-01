@@ -566,9 +566,15 @@ E:\Projects\MIS Service\MIS Service\MIS Service\obj\Debug\MIS Service.csproj.Cor
 E:\Projects\MIS Service\MIS Service\MIS Service\obj\Debug\MIS Service.csproj.CopyComplete
 E:\Projects\MIS Service\MIS Service\MIS Service\obj\Debug\MIS Service.dll
 E:\Projects\MIS Service\MIS Service\MIS Service\obj\Debug\MIS Service.pdb
-E:\Projects\MIS Service\MIS Service\MIS Service\bin\EPPlus.dll
 E:\Projects\MIS Service\MIS Service\MIS Service\bin\Microsoft.IO.RecyclableMemoryStream.dll
 E:\Projects\MIS Service\MIS Service\MIS Service\bin\System.ComponentModel.Annotations.dll
-E:\Projects\MIS Service\MIS Service\MIS Service\bin\EPPlus.xml
 E:\Projects\MIS Service\MIS Service\MIS Service\bin\Microsoft.IO.RecyclableMemoryStream.xml
 E:\Projects\MIS Service\MIS Service\MIS Service\obj\Debug\MIS Service.csprojAssemblyReference.cache
+E:\Projects\MIS Service\MIS Service\MIS Service\bin\ClosedXML.dll
+E:\Projects\MIS Service\MIS Service\MIS Service\bin\DocumentFormat.OpenXml.dll
+E:\Projects\MIS Service\MIS Service\MIS Service\bin\ExcelNumberFormat.dll
+E:\Projects\MIS Service\MIS Service\MIS Service\bin\System.IO.Packaging.dll
+E:\Projects\MIS Service\MIS Service\MIS Service\bin\ClosedXML.pdb
+E:\Projects\MIS Service\MIS Service\MIS Service\bin\ClosedXML.xml
+E:\Projects\MIS Service\MIS Service\MIS Service\bin\DocumentFormat.OpenXml.xml
+E:\Projects\MIS Service\MIS Service\MIS Service\bin\ExcelNumberFormat.xml
