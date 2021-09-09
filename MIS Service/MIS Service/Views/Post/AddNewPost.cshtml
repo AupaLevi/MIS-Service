@@ -15,10 +15,8 @@
                     <div class="row">
                         <div class="col col-md-6">
                             <h3 class="panel-title">Post List</h3>
-                        </div>      
-                        <div>
-                            <a href ="ExportData" class="m-btn red">Export To Excel</a>
                         </div>
+                        <button type="button" class="btn btn-danger" onclick="@("window.location.href='" + @Url.Action("ExportExcel", "Export") + "'");">Export</button>
                         <div class="col col-md-5 text-right">
                             <button type="button" class="btn btn-danger" onclick="@("window.location.href='" + @Url.Action("AddPostedLog", "PostLog") + "'");">LogTickets</button>
                             <button type="button" class="btn btn-danger" onclick="@("window.location.href='" + @Url.Action("CreatePost", "Post") + "'");">MIS服務單建立</button>

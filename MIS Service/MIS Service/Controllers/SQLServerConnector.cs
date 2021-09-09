@@ -223,60 +223,6 @@ namespace MIS_Service.Controllers
             return postsList;
         }//End of getPostsList
 
-        public List<PostDataObject> GetTopPostsList(int num)
-        {
-            String sqlString = "SELECT TOP " + num +
-                               "       tic01, tic02, tic03, tic04, tic05, " +
-                               "       tic06, tic07, tic08 " +
-                               " FROM tic_file " +
-                               " ORDER BY tic01 DESC" +
-                               "";
-            List<PostDataObject> postsList = new List<PostDataObject>();
-
-            OpenConnection();
-            actionResult = "SUCCESS";
-
-            try
-            {
-                SqlCommand sqlCommand = sqlConnection.CreateCommand();
-
-                sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = sqlString;
-
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                if (dataReader.HasRows)
-                {
-                    while (dataReader.Read())
-                    {
-                        PostDataObject postDataObject = new PostDataObject();
-
-                        postDataObject.Tic01 = dataReader.GetString(dataReader.GetOrdinal("Tic01"));
-                        postDataObject.Tic02 = dataReader.GetString(dataReader.GetOrdinal("Tic02"));
-                        postDataObject.Tic03 = dataReader.GetString(dataReader.GetOrdinal("Tic03"));
-                        postDataObject.Tic04 = dataReader.GetString(dataReader.GetOrdinal("Tic04"));
-                        postDataObject.Tic05 = dataReader.GetString(dataReader.GetOrdinal("Tic05"));
-                        postDataObject.Tic06 = dataReader.GetString(dataReader.GetOrdinal("Tic06"));
-                        postDataObject.Tic07 = dataReader.GetString(dataReader.GetOrdinal("Tic07"));
-                        postDataObject.Tic08 = dataReader.GetString(dataReader.GetOrdinal("Tic08"));
-                        postDataObject.Tic09 = dataReader.GetString(dataReader.GetOrdinal("Tic09"));
-
-                        postsList.Add(postDataObject);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                string v = "FAIL" + ex.Message;
-                actionResult = v;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-
-            return postsList;
-        }//End of getTOPPostsList
-
         public List<PostDataObject> GetLimitPostsList(String str, String end)
         {
             String sqlString = "SELECT * FROM tic_file" +
