@@ -30,7 +30,7 @@ namespace MIS_Service.Controllers
             {
                 var worksheet = workbook.Worksheets.Add("MIS Service");
                 var currentRow = 1;
-
+                
                 #region Header                                                             
                 //worksheet.Cell(currentRow, 1).Value = "Tic01";             //Excel欄位修正   currentRow要修改
                 worksheet.Cell(currentRow, 1).Value = "申請日期";       
@@ -63,7 +63,6 @@ namespace MIS_Service.Controllers
                 {
                     workbook.SaveAs(stream);
                     var content = stream.ToArray();
-
                     return File(
                         content,
                         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
