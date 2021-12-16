@@ -602,5 +602,73 @@ namespace MIS_Service.Controllers
 
             return postsLog;
         }
+
+        private string selecttigDataSQL;
+        public String getSelecttigDataSQL(String postID)
+        {
+            this.selecttigDataSQL =
+                " SELECT * FROM tig_file WHERE tig01 = '" + postID + "'";
+
+            return this.selecttigDataSQL;
+        }
+
+        public int SelectTicRowCounts(string key1)
+        {
+            OpenConnection();
+            dataCount = 0;
+            try
+            {
+                sql = " Select count (tic01) from tic_file " +
+                    " where tic01 ='" + key1 + "'";
+                SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = sql;
+                dataCount = Convert.ToInt16(sqlCommand.ExecuteScalar());
+                if (dataCount == -1)
+                {
+                    dataCount = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("SQLServer Data Secure Error : " + ex.Message);
+                sqlConnection.Close();
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+            return dataCount;
+        }
+
+
+        public String ConfirmedLogDelete(String postID)
+        {
+            String sqlString = "DELETE FROM tig_file WHERE tig01 = '" + postID + "'";
+            int deletedRows;
+            actionResult = "SUCCESS";
+            try
+            {
+                OpenConnection();
+
+                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
+                deletedRows = sqlCommand.ExecuteNonQuery();
+                if (deletedRows == 0)
+                {
+                    actionResult = "FAIL";
+                }
+            }
+            catch (Exception ex)
+            {
+                actionResult = "FAIL" + ex.Message;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return actionResult;
+        }
     }
 }

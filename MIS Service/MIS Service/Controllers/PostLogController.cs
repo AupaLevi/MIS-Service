@@ -135,6 +135,83 @@ namespace MIS_Service.Controllers
             return Redirect("BackToAddPostedLog");
         }
 
+        [HttpPost, ActionName("PostLogDetail")]
+        public ActionResult InputLogBackToTicket(String postID)
+        {
+            SQLServerConnector sqlServerConnector = new SQLServerConnector();
+            string btTicketString = sqlServerConnector.getSelecttigDataSQL(postID);
+            DataTable dataTable;
+            string sqlResult;
+            List<PostDataObject> goodpostLogToTicket;
+            List<PostDataObject> insertedpostLogToTicket;
+
+            PostDataObject postDataObject;
+            string actionResult;
+            int dataCount;
+
+            dataTable = sqlServerConnector.GetDataTable(btTicketString);
+            sqlResult = "";
+            goodpostLogToTicket = new List<PostDataObject>();
+
+            if (dataTable.Rows.Count >0)
+            {
+                postDataObject = new PostDataObject();
+                foreach(DataRow row in dataTable.Rows)
+                {
+                    sqlResult = "Y";
+
+                    try
+                    {
+                        postDataObject.Tic01 = row[dataTable.Columns["tig01"]].ToString();
+                        postDataObject.Tic02 = row[dataTable.Columns["tig02"]] == DBNull.Value ? "" :
+                            Convert.ToDateTime(row[dataTable.Columns["tig02"]]).ToString("yyyy-MM-dd");
+                        postDataObject.Tic03 = row[dataTable.Columns["tig03"]].ToString();
+                        postDataObject.Tic04 = row[dataTable.Columns["tig04"]].ToString();
+                        postDataObject.Tic05 = row[dataTable.Columns["tig05"]].ToString();
+                        postDataObject.Tic06 = row[dataTable.Columns["tig06"]].ToString();
+                        postDataObject.Tic07 = row[dataTable.Columns["tig07"]].ToString();
+                        postDataObject.Tic08 = row[dataTable.Columns["tig08"]].ToString();
+                        postDataObject.Tic09 = row[dataTable.Columns["tig09"]].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        sqlResult = "N";
+                        Console.WriteLine("Foreach Exception:" + ex.Message);
+                        break;
+                    }
+                    finally
+                    {
+                        if (sqlResult == "Y")
+                        {
+                            dataCount = 0;
+                            dataCount = sqlServerConnector.SelectTicRowCounts(postDataObject.Tic01);
+                            if (dataCount ==0)
+                            {
+                                goodpostLogToTicket.Add(postDataObject);
+                            }
+                        }
+                    }
+                }
+                actionResult = "FAILED";
+                insertedpostLogToTicket = new List<PostDataObject>();
+
+                if (goodpostLogToTicket.Count > 0)
+                {
+                    foreach (PostDataObject postInsTicket in goodpostLogToTicket)
+                    {
+                        actionResult = sqlServerConnector.InsertPostData(postDataObject);
+                        if (actionResult == "SUCCESS")
+                        {
+                            insertedpostLogToTicket.Add(postInsTicket);
+                        }
+                    }
+                }
+            }
+            string DelResult = sqlServerConnector.ConfirmedLogDelete(postID);
+
+            return RedirectToAction("AddPostedLog", "PostLog");
+        }
+
         public ActionResult BackToAddPostedLog()
         {
             PostLogViewModel postLogViewModel = (PostLogViewModel)TempData["postLogViewModel"];
