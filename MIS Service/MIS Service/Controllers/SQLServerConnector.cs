@@ -352,6 +352,68 @@ namespace MIS_Service.Controllers
             return actionResult;
         }
 
+        public String ConfirmedUpdToCaseClosed(PostDataObject postDataObject)
+        {
+            String UpdTime = DateTime.Now.ToString("yyyy-MM-dd");
+
+            String sqlString = "UPDATE tic_file SET tic09 = @val01 " +
+                              "WHERE tic01 = @val02 " +
+                              "";
+            actionResult = "SUCCESS";
+            try
+            {
+                OpenConnection();
+
+                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@val01", UpdTime);
+                sqlCommand.Parameters.AddWithValue("@val02", postDataObject.Tic01);
+                
+
+                sqlCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                actionResult = "Fail" + ex.Message;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+
+            return actionResult;
+        }
+
+        public String ConfirmedDelToCaseClosed(PostDataObject postDataObject)
+        {
+            String sqlString = "DELETE FROM tic_file WHERE tic01 = @val01 ";
+            int deletedRows;
+            actionResult = "SUCCESS";
+            try
+            {
+                OpenConnection();
+
+                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@val01", postDataObject.Tic01);
+                deletedRows = sqlCommand.ExecuteNonQuery();
+                if (deletedRows == 0)
+                {
+                    actionResult = "FAIL";
+                }
+            }
+            catch (Exception ex)
+            {
+                actionResult = "FAIL" + ex.Message;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return actionResult;
+        }
+
         public String ConfirmedEdit(PostDataObject postDataObject)
         {
             String sqlString = "UPDATE tic_file SET tic03 = @val01," +

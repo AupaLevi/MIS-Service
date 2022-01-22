@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>E:\Web Upload\MIS Service Upload\2021-09-10</_PublishTargetUrl>
+    <_PublishTargetUrl>E:\Web Upload\MIS Service Upload\2022-01-22</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Data/OAWebBase.mdf">
@@ -43,10 +43,10 @@
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/MIS Service.dll">
-      <publishTime>09/10/2021 14:28:20</publishTime>
+      <publishTime>01/22/2022 14:48:44</publishTime>
     </File>
     <File Include="bin/MIS Service.pdb">
-      <publishTime>09/10/2021 14:28:20</publishTime>
+      <publishTime>01/22/2022 14:48:44</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>04/22/2019 01:06:16</publishTime>
@@ -658,10 +658,10 @@
       <publishTime>09/10/2021 09:45:25</publishTime>
     </File>
     <File Include="Views/Post/ConfirmDelete.cshtml">
-      <publishTime>08/25/2021 12:01:51</publishTime>
+      <publishTime>09/13/2021 15:57:11</publishTime>
     </File>
     <File Include="Views/Post/CreatePost.cshtml">
-      <publishTime>08/25/2021 14:57:40</publishTime>
+      <publishTime>09/11/2021 13:59:06</publishTime>
     </File>
     <File Include="Views/Post/EditPost.cshtml">
       <publishTime>09/10/2021 10:19:38</publishTime>
@@ -673,7 +673,7 @@
       <publishTime>09/10/2021 10:19:58</publishTime>
     </File>
     <File Include="Views/PostLog/PostLogDetail.cshtml">
-      <publishTime>08/25/2021 13:54:06</publishTime>
+      <publishTime>12/16/2021 08:38:05</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/21/2021 11:37:22</publishTime>
@@ -688,7 +688,7 @@
       <publishTime>04/21/2021 11:37:22</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/09/2021 16:11:33</publishTime>
+      <publishTime>01/22/2022 14:48:47</publishTime>
     </File>
   </ItemGroup>
 </Project>

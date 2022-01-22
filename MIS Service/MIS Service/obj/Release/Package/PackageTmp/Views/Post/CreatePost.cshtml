@@ -24,7 +24,7 @@
 
                     <div class="mb-3">
                         <label for="Tic03">收件日期</label>
-                        @Html.TextBoxFor(model => model.Tic03, new { @class = "form-control" })
+                        @Html.EditorFor(model => model.Tic03, new { htmlAttributes = new { @class = "form-control", type = "date", required = "required" } })
                     </div>
                     <div class="mb-3">
                         <label for="Tic04">表單序號</label>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="Tic08">預定完成日</label>
-                        @Html.TextBoxFor(model => model.Tic08, new { @class = "form-control" })
+                        @Html.EditorFor(model => model.Tic08, new { htmlAttributes = new { @class = "form-control", type = "date", required = "required" } })
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">

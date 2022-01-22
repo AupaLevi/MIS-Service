@@ -237,7 +237,7 @@ namespace MIS_Service.Controllers
         }
 
         [HttpPost, ActionName("PostDetail")]
-        public ActionResult InputTicketToLog(String postID)
+        public ActionResult InputTicketToLog(String postID , [Bind(Include = "Tic01,Tic02,Tic03,Tic04,Tic05,Tic06,Tic07,Tic08,Tic09")] PostDataObject postDataObject)
         {
             SQLServerConnector sqlServerConnector = new SQLServerConnector();
             string logSQLString = sqlServerConnector.getSelectticDataSQL(postID);
@@ -245,11 +245,12 @@ namespace MIS_Service.Controllers
             string sqlResult;
             List<PostDataLog> goodpostDataLog;
             List<PostDataLog> insertedpostDataLog;
-
             PostDataLog postDataLog;
             string actionResult;
             int dataCount;
+            insertedpostDataLog = new List<PostDataLog>();
 
+            sqlServerConnector.ConfirmedUpdToCaseClosed(postDataObject);
 
             dataTable = sqlServerConnector.GetDataTable(logSQLString);
             sqlResult = "";
@@ -259,6 +260,9 @@ namespace MIS_Service.Controllers
             if (dataTable.Rows.Count > 0)
             {
                 postDataLog = new PostDataLog();
+
+                
+
                 foreach (DataRow row in dataTable.Rows)
                 {
 
@@ -299,8 +303,7 @@ namespace MIS_Service.Controllers
                     }
                 }
                 actionResult = "FAILED";
-                insertedpostDataLog = new List<PostDataLog>();
-
+              
                 if (goodpostDataLog.Count > 0)
                 {
                     foreach (PostDataLog postInsLog in goodpostDataLog)
@@ -314,12 +317,20 @@ namespace MIS_Service.Controllers
                 }
 
             }
+            actionResult = "FAILED";
 
-            string DelResult = sqlServerConnector.ConfirmedDelete(postID);
+            if (insertedpostDataLog.Count >0)
+            {
+                //actionResult = sqlServerConnector.ConfirmedUpdToCaseClosed(postDataObject);
+                string DelResult = sqlServerConnector.ConfirmedDelToCaseClosed(postDataObject);
+            }
 
+            
 
             return RedirectToAction("AddNewPost", "Post");
         }
+
+
 
     }
 }
